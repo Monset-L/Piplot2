@@ -1,0 +1,28 @@
+from tkinter import Tk, Button, Frame, messagebox, Label, Entry
+
+ventana = Tk()
+ventana.title("Tareas")
+ventana.geometry("600x400")
+seccion1 = Frame(ventana, bg = "#B8FFAB")
+seccion1.pack(expand=True, fill="both")
+bienvenida = Label(seccion1, text="Registro de Tareas", bg="#B8FFAB", font="consolas 20 bold")
+bienvenida.pack()
+seccion2 = Frame(ventana, bg= "#D8B769")
+seccion2.pack(expand=True, fill="both")
+Nombre = Label(seccion1, text="Nombre de la tarea:", font="Arial 12", bg="#B8FFAB")
+Nombre.place(x=190, y=60)
+Fecha = Label(seccion1, text="Fecha de entrega:", font="Arial 12", bg="#B8FFAB")
+Fecha.place(x=200, y=85)
+status = Label(seccion1, text="Status de la tarea:", font="Arial 12", bg="#B8FFAB")
+status.place(x="200", y="110")
+nombre2 = Entry(seccion1)
+nombre2.place(x=340, y=65)
+fecha2 = Entry(seccion1)
+fecha2.place(x=340, y=90)
+status2 = Entry(seccion1)
+status2.place(x=340, y=115)
+
+botonRegistrar = Button(seccion2, text="Guardar", fg="black", bg="#D8B769", font="Arial 12")
+botonRegistrar.place(x=260, y=60)
+
+ventana.mainloop()
