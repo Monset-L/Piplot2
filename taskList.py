@@ -17,18 +17,18 @@ welcome = Label(s1, text="Bienvenido a Piplot", bg="#B8FFAB", font="Lucida 18 bo
 welcome.pack(pady=10)
 
 tabla = ttk.Treeview(s1)
-tabla['columns'] = ('Nombre', 'Num', 'Descrip', 'Inicio', 'Fin')
+tabla['columns'] = ('Num', 'Nombre', 'Descrip', 'Inicio', 'Fin')
 
 tabla.column("#0", width=0, stretch=NO)
-tabla.column("Nombre", anchor=CENTER, width=80)
 tabla.column("Num", anchor=CENTER, width=80)
+tabla.column("Nombre", anchor=CENTER, width=80)
 tabla.column("Descrip", anchor=CENTER, width=80)
 tabla.column("Inicio", anchor=CENTER, width=80)
 tabla.column("Fin", anchor=CENTER, width=80)
 
 tabla.heading("#0", text="", anchor=CENTER)
-tabla.heading("Nombre", text="Nombre", anchor=CENTER)
 tabla.heading("Num", text="Número", anchor=CENTER)
+tabla.heading("Nombre", text="Nombre", anchor=CENTER)
 tabla.heading("Descrip", text="Descripción", anchor=CENTER)
 tabla.heading("Inicio", text="Inicio", anchor=CENTER)
 tabla.heading("Fin", text="Fin", anchor=CENTER)
