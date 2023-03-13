@@ -7,12 +7,11 @@ class taskList:
 
     ventana = Tk()
     ventana.title = "Piplot"
-    ventana.geometry="600x400"
+    ventana.geometry=("600x400")
     ventana.configure(background="#B8FFAB")
     
     seccion1 = Frame(ventana, bg="#B8FFAB")
     seccion1.configure(height=10)
-    
     
     seccion2 = Frame(ventana, bg="#B8FFCC")
     
