@@ -1,6 +1,5 @@
 
 from tkinter import *
-import tkinter as tk
 
 
 class tareas ():
@@ -18,23 +17,23 @@ class tareas ():
         lista.append(elemento)
         
         
-        listbox = tk.Listbox(ventana, width=30)
-        listbox.insert(tk.END, elemento)
+        listbox = Listbox(ventana, width=30)
+        listbox.insert(END, elemento)
         listbox.pack()
         
-        entrada.delete(0, tk.END)
+        entrada.delete(0, END)
         print(entrada)
         
        
         
     def ver_tarea():
         
-        ventana = tk.Tk()
+        ventana = Tk()
 
 
 
 
-        listbox = tk.Listbox(ventana, width=30)
+        listbox = Listbox(ventana, width=30)
         
 
         ventana.mainloop()
