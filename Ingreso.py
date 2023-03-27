@@ -30,10 +30,7 @@ class ingreso:
     bienvenida.pack(pady=30)
     
     Nombre = Label(seccion1, text="Nombre de la tarea:", font="Arial 12", bg="#B8FFAB")
-    Nombre.place(x=190, y=90)
-    
-    NoT = Label(seccion1, text="No. de la tarea:", font="Arial 12", bg="#B8FFAB")
-    NoT.place(x=200, y=120)
+    Nombre.place(x=190, y=115)
     
     Descripcion = Label(seccion1, text="Descripción:", font="Arial 12", bg="#B8FFAB")
     Descripcion.place(x="200", y="140")
@@ -45,10 +42,7 @@ class ingreso:
     FF.place(x="200", y="190")
     
     nombre2 = Entry(seccion1)
-    nombre2.place(x=340, y=95)
-    
-    NoT2 = Entry(seccion1)
-    NoT2.place(x=340, y=120)
+    nombre2.place(x=340, y=120)
     
     Descripcion2 = Entry(seccion1)
     Descripcion2.place(x=340, y=145)
