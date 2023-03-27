@@ -1,11 +1,8 @@
 
 from tkinter import *
-<<<<<<< Updated upstream
 import tkinter as tk
-=======
 import sqlite3
 from tkinter import messagebox
->>>>>>> Stashed changes
 
 
 class tareas ():
@@ -49,7 +46,7 @@ class tareas ():
         
         try:
             
-            conexion = sqlite3.connect("C:/Users/iSkye/Documents/GitHub/Proyecto Integrador/DBTareas.db")
+            conexion = sqlite3.connect("C:/Users/Lenovo/Desktop/piplot2.db")
             print("Conectado con exito")
             return conexion
         
