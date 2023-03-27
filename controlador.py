@@ -1,6 +1,11 @@
 
 from tkinter import *
+<<<<<<< Updated upstream
 import tkinter as tk
+=======
+import sqlite3
+from tkinter import messagebox
+>>>>>>> Stashed changes
 
 
 class tareas ():
@@ -38,3 +43,36 @@ class tareas ():
         
 
         ventana.mainloop()
+        
+        
+    def conexionBD (self):
+        
+        try:
+            
+            conexion = sqlite3.connect("C:/Users/iSkye/Documents/GitHub/Proyecto Integrador/DBTareas.db")
+            print("Conectado con exito")
+            return conexion
+        
+        
+        except sqlite3.OperationalError:
+            
+            print("Error al conectar")
+    
+    def guardar_tarea(self,nom,desc,fini,ffin):
+        
+        conexion = self.conexionBD()
+        cursor = conexion.cursor()
+        
+        
+        if (nom == "" or desc == "" or fini =="" or ffin == ""):
+            
+            messagebox.showwarning("Advertencia","No se permiten campos vacios")
+            
+        else:
+            
+            cursor.execute("INSERT INTO Tareas VALUES (null,?,?,?,?)",(nom,desc,fini,ffin))
+            conexion.commit()
+            messagebox.showinfo("Informacion","Tarea guardada con exito")
+            conexion.close()            
+    
+        
