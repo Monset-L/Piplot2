@@ -1,87 +1,103 @@
-from tkinter import Tk, Button, Frame, messagebox, Label, Entry
+from tkinter import *
+from tkinter import  ttk
+import tkinter as tk
+from ControladorPiplot import *
 
 
-from controlador import *
+controlador = controladorPBD()
 
+def ejecutaInsert():
+    controlador.guardarUsuario(varNomb.get(), varDesc.get(), varIni.get(), varFin.get())
 
-controlador = tareas()
- 
-class ingreso:
-    def __init__(self):
-        self
-     
-  
-    def showExito():
-        msg= messagebox.showinfo("Exito", "Tu ingreso se agregó exitosamente")
+def ejecutaSelectU():
+    rsUsuario = controlador.consultarTarea(BusT.get())
+    
+    for usu in rsUsuario:
+        cadena = str(usu[0])+" "+ str(usu[1]) + " "+ str(usu[2])+ " "+ str(usu[3]+" "+ str(usu[4]))
+    if(rsUsuario):
+        textBus.insert("0.0",cadena)
+    else:
+        messagebox.showerror("Error","Tarea no encontrado")
         
-        
-    def ejecuta_insert():
-        
-        controlador.guardar_tarea(nombre2.get(), Descripcion2.get(), FI2.get(), FF2.get())
-        
-        
-=======
-class ingreso:
-    def __init__(self):
-        self
-        
-    def showExito():
-        msg= messagebox.showinfo("Exito", "Tu ingreso se agregó exitosamente")
-        
+def tareas():
+    rsUsuario = controlador.consulta()
+    tree.delete(*tree.get_children())
+    for usu in rsUsuario:
+        tree.insert("", "end",text=usu[0], values=(usu[1], usu[2], usu[3], usu[4]))
+    
 
-    ventana = Tk()
-    ventana.title("Tareas")
-    ventana.geometry("600x400")
-    
-    seccion1 = Frame(ventana, bg = "#B8FFAB")
-    seccion1.pack(expand=True, fill="both")
-    
-    bienvenida = Label(seccion1, text="Registro de Tareas", bg="#B8FFAB", font="Lucida 20 bold")
-    bienvenida.pack(pady=30)
-    
-    Nombre = Label(seccion1, text="Nombre de la tarea:", font="Arial 12", bg="#B8FFAB")
+Ventana = Tk()
+Ventana.title("PIPLOT")
+Ventana.geometry("500x350")
 
-    Nombre.place(x=190, y=115)
-=======
-    Nombre.place(x=190, y=90)
-    
-    NoT = Label(seccion1, text="No. de la tarea:", font="Arial 12", bg="#B8FFAB")
-    NoT.place(x=200, y=120)
+panel = ttk.Notebook(Ventana)
+panel.pack(fill="both",expand="yes")
 
-    
-    Descripcion = Label(seccion1, text="Descripción:", font="Arial 12", bg="#B8FFAB")
-    Descripcion.place(x="200", y="140")
-    
-    FI = Label(seccion1, text="Fecha de inicio:", font="Arial 12", bg="#B8FFAB")
-    FI.place(x="200", y="165")
-    
-    FF = Label(seccion1, text="Fecha de fin:", font="Arial 12", bg="#B8FFAB")
-    FF.place(x="200", y="190")
-    
-    nombre2 = Entry(seccion1)
+pestana1 = ttk.Frame(panel)
+pestana2 = ttk.Frame(panel)
+pestana3 = ttk.Frame(panel)
+pestana4 = ttk.Frame(panel)
+pestana5 = ttk.Frame(panel)
 
-    nombre2.place(x=340, y=120)
-=======
-    nombre2.place(x=340, y=95)
-    
-    NoT2 = Entry(seccion1)
-    NoT2.place(x=340, y=120)
+#Registro de tareas
 
-    
-    Descripcion2 = Entry(seccion1)
-    Descripcion2.place(x=340, y=145)
-    
-    FI2 = Entry(seccion1)
-    FI2.place(x=340, y=170)
-    
-    FF2 = Entry(seccion1)
-    FF2.place(x=340, y=195)
+titulo = Label(pestana1,text="Registro de Tareas", fg="Black", font=("Arial Black",18)).pack()
+
+varNomb = tk.StringVar()
+lblNomb = Label(pestana1, text="Nombre: ").pack()
+txtNomb = Entry(pestana1,textvariable=varNomb).pack()
+
+varDesc = tk.StringVar()
+lblDesc = Label(pestana1, text="Descripcion: ").pack()
+txtDesc = Entry(pestana1,textvariable=varDesc).pack()
+
+varIni = tk.StringVar()
+lblIni = Label(pestana1, text="Fecha Inicio: ").pack()
+txtIni = Entry(pestana1,textvariable=varIni).pack()
+
+varFin = tk.StringVar()
+lblFin = Label(pestana1, text="Fecha Inicio: ").pack()
+txtFin = Entry(pestana1,textvariable=varFin).pack()
+
+btnGuardar = Button(pestana1, text="Guardar Tarea: ", command=ejecutaInsert).pack()
+
+#Buscar una tarea
+
+titulo = Label(pestana2,text="Buscar Tarea", fg="Black", font=("Arial Black",18)).pack()
+
+BusT = tk.StringVar()
+lblid= Label(pestana2, text="Numero de tarea: ").pack()
+txtid = Entry(pestana2,textvariable=BusT).pack()
+btnBusqueda = Button(pestana2,text="Buscar",command=ejecutaSelectU).pack()
+
+subBus = Label(pestana2,text="Tarea:",fg="Black",font=("Arial Black",18)).pack()
+textBus = tk.Text(pestana2,height=5,width=52)
+textBus.pack()
+
+#Consulta de todas las tareas
+
+Titulo = Label(pestana3,text="Tareas:",fg="Black",font=("Arial Black",15)).pack()
+tree = ttk.Treeview(pestana3)
+tree['columns']=('NomTarea', 'DescTarea', 'FInicio', 'FFin')
+tree.column('#0', width=30, minwidth=30)
+tree.column('NomTarea', width=150, minwidth=150)
+tree.column('DescTarea', width=120, minwidth=120)
+tree.column('FInicio', width=80, minwidth=80)
+tree.column('FFin', width=80, minwidth=80)
+tree.heading('#0', text='Id')
+tree.heading('NomTarea', text='NomTarea')
+tree.heading('DescTarea', text='DescTarea')
+tree.heading('FInicio', text='FInicio')
+tree.heading('FFin', text='FFin')
+tree.pack()
+btnBusquedas = Button(pestana3,text="Consultar",command=tareas).pack()
 
 
-    botonRegistrar = Button(seccion1, text="Guardar", fg="black", bg="White", font="Arial 12", command=ejecuta_insert)
-=======
-    botonRegistrar = Button(seccion1, text="Guardar", fg="black", bg="White", font="Arial 12", command= showExito)
+panel.add(pestana1, text="Registro de tareas")
+panel.add(pestana2, text="Buscar")
+panel.add(pestana3, text="Tareas")
+panel.add(pestana4, text="Eliminar Tarea")
+panel.add(pestana5, text="Actualizar Tarea")
 
-    botonRegistrar.place(x=260, y=300)
-    
-    ventana.mainloop()
+
+Ventana.mainloop()
