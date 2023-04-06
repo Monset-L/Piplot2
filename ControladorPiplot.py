@@ -8,7 +8,7 @@ class controladorPBD:
     #Preparamos la conexion a la base de datos para usarla cuando se ocupe
     def conexionBD(self):
         try:
-            conexion = sqlite3.connect("C:/Users/lenovo/Desktop/piplo2.db")
+            conexion = sqlite3.connect("C:/Users/iSkye/Documents/GitHub/Proyecto Integrador/piplo2.db")
             print("Conexion exitosa")
             return conexion
         
@@ -35,7 +35,7 @@ class controladorPBD:
             cursor.execute(qrInsert,datos)
             conx.commit()
             conx.close()
-            messagebox.showinfo("Exito", "Se guardo el usuario")
+            messagebox.showinfo("Exito", "Se guardo la tarea exitosamente")
             
     def consultarTarea(self,num):
         #1.- Preparar la conexion
@@ -82,3 +82,67 @@ class controladorPBD:
                 
         except sqlite3.OperationalError:
             print("Error en la consulta")
+            
+            
+
+    def eliminarusuario(self,id):
+        
+        conx = self.conexionBD()
+        
+        
+        
+        try:
+            
+        
+            if (id == ""):
+                messagebox.showwarning("CUIDADO","Revisa tus datos")
+                conx.close()
+            else:
+            
+                respuesta = messagebox.askquestion("Eliminar","¿Deseas eliminar el registro?")
+            
+                if(respuesta == "yes"):
+                
+               
+                    cursor = conx.cursor()
+                    sqlDelete="delete from Tareas where id = "+id
+                    cursor.execute(sqlDelete)
+                    conx.commit()
+              
+                    messagebox.showinfo("EXITO","Se elimino la tarea exitosamente")
+        
+        
+                    conx.close()
+             
+                
+                else:
+                
+                # Messagebox no se elimino el registro
+                
+                    messagebox.showinfo("INFO","No se elimino la tarea")
+                    conx.close()
+        except sqlite3.OperationalError:
+            
+            print("Fallo en la consulta")    
+            
+            
+        #Metodo Actualizar usuario
+        
+    def actualizartarea(self,id,nom,desc,ini,fin):
+        
+        conx = self.conexionBD()
+        
+        if(id == "" or nom == "" or desc == "" or ini == "" or fin == ""):
+            messagebox.showwarning("Aguas", "Revisa tu formulario")
+            conx.close()
+        else:
+            #Preparar datos y el querySQL
+            cursor = conx.cursor()
+            datos = (nom, desc, ini, fin,id)
+            qrInsert="update Tareas set nomTarea=?,descTarea=?,fInicio=?,fFin=? where id=?"
+            
+            #Proceder a Insertar y cerramos la base de datos
+            cursor.execute(qrInsert,datos)
+            conx.commit()
+            conx.close()
+            messagebox.showinfo("Exito", "Se actualizo la tarea exitosamente")
