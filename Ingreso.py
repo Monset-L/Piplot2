@@ -24,6 +24,21 @@ def tareas():
     tree.delete(*tree.get_children())
     for usu in rsUsuario:
         tree.insert("", "end",text=usu[0], values=(usu[1], usu[2], usu[3], usu[4]))
+        
+#Funcion eliminar tareas
+
+def ejecutaDelete():
+    
+    controlador.eliminarusuario(BusT3.get())
+    tareas()
+    
+#Funcion Actualizar tarea   
+
+def ejecutaUpdate():
+    
+    controlador.actualizarusuario(BusT4.get(),varNomb2.get(), varDesc2.get(), varIni2.get(), varFin2.get())
+    tareas()
+        
     
 
 Ventana = Tk()
@@ -91,6 +106,55 @@ tree.heading('FInicio', text='FInicio')
 tree.heading('FFin', text='FFin')
 tree.pack()
 btnBusquedas = Button(pestana3,text="Consultar",command=tareas).pack()
+
+#Eliminar tarea
+
+titulo = Label(pestana4,text="Eliminar Tarea", fg="Black", font=("Arial Black",18)).pack()
+
+BusT3 = tk.StringVar()
+
+lblid= Label(pestana4, text="Numero de tarea: ").pack()
+
+txtid = Entry(pestana4,textvariable=BusT3).pack()
+
+btnBusqueda = Button(pestana4,text="Eliminar",command=ejecutaDelete).pack()
+
+#Actualizar datos de la tarea con id
+
+titulo = Label(pestana5,text="Actualizar Tarea", fg="Black", font=("Arial Black",18)).pack()
+
+BusT4 = tk.StringVar()
+
+lblid= Label(pestana5, text="Numero de tarea: ").pack()
+
+txtid = Entry(pestana5,textvariable=BusT4).pack()
+
+varNomb2 = tk.StringVar()
+
+lblNomb = Label(pestana5, text="Nombre: ").pack()
+
+txtNomb = Entry(pestana5,textvariable=varNomb2).pack()
+
+varDesc2 = tk.StringVar()
+
+lblDesc = Label(pestana5, text="Descripcion: ").pack()
+
+txtDesc = Entry(pestana5,textvariable=varDesc2).pack()
+
+varIni2 = tk.StringVar()
+
+lblIni = Label(pestana5, text="Fecha Inicio: ").pack()
+
+txtIni = Entry(pestana5,textvariable=varIni2).pack()
+
+varFin2 = tk.StringVar()
+
+lblFin = Label(pestana5, text="Fecha Final: ").pack()
+
+txtFin = Entry(pestana5,textvariable=varFin2).pack()
+
+
+btnBusqueda = Button(pestana5,text="Actualizar",command=ejecutaUpdate).pack()
 
 
 panel.add(pestana1, text="Registro de tareas")
