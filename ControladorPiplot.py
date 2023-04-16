@@ -8,7 +8,11 @@ class controladorPBD:
     #Preparamos la conexion a la base de datos para usarla cuando se ocupe
     def conexionBD(self):
         try:
+
+            conexion = sqlite3.connect("piplo2.db")
+
             conexion = sqlite3.connect("C:/Users/iSkye/Documents/GitHub/Proyecto Integrador/piplo2.db")
+
             print("Conexion exitosa")
             return conexion
         
@@ -53,11 +57,12 @@ class controladorPBD:
                 #4.- Preparar lo necesario para el select
                 cursor=conx.cursor()
                 sqlSelect = "select * from Tareas where Id="+num
-                
+
                 #5.- Ejecucion y guardado de la consulta
                 
                 cursor.execute(sqlSelect)
                 RSusuario = cursor.fetchall()
+
                 conx.close()
                 
                 return RSusuario
