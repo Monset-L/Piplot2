@@ -1,6 +1,6 @@
 from tkinter import *
 from tkinter import ttk
-from controlador import *
+from ControladorPiplot import *
 from tkinter import messagebox
 
 ventanam = Tk() 
