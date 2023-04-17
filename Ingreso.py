@@ -36,13 +36,11 @@ def tareas():
 #Funcion eliminar tareas
 
 def ejecutaDelete():
-    
     controlador.eliminarusuario(BusT3.get())
     
 #Funcion Actualizar tarea   
 
 def ejecutaUpdate():
-    
     controlador.actualizartarea(BusT4.get(),varNomb2.get(), varDesc2.get(), varIni2.get(), varFin2.get())
 
 Ventana = Tk()

@@ -96,19 +96,19 @@ class controladorPBD:
             
             try:
                 cursor = conx.cursor()
-                sqlDelete="delete from Tareas where id = "+id
-                respuesta = messagebox.askquestion("Eliminar","¿Deseas eliminar el registro?")
+                sqlDelete=("DELETE from Tareas where id = ?")
+                dato = (id)
+                respuesta = messagebox.askokcancel("Eliminar","¿Deseas eliminar el registro?")
             
                 if respuesta == True:
-            
-                    cursor.execute(sqlDelete)
+                    cursor.execute(sqlDelete,dato)
                     conx.commit()
                     conx.close()
                     messagebox.showinfo("EXITO","Se elimino la tarea exitosamente")
                 else:
                 # Messagebox no se elimino el registro
-                    messagebox.showerror("Error","No se elimino la tarea")
                     conx.close()
+                    messagebox.showerror("Error","No se elimino la tarea")
             except sqlite3.OperationalError:
             
                 print("Fallo en la consulta")    
