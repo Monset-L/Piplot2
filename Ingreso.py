@@ -46,7 +46,7 @@ def ejecutaUpdate():
     controlador.actualizartarea(BusT4.get(),varNomb2.get(), varDesc2.get(), varIni2.get(), varFin2.get())
 
 Ventana = Tk()
-Ventana.title("PIPLOT")
+Ventana.title("Piplot")
 
 Ventana.geometry("600x400")
 
@@ -62,19 +62,19 @@ pestana5 = ttk.Frame(panel)
 
 # Define un estilo personalizado para cada pestaña
 style1 = ttk.Style()
-style1.configure('Custom1.TFrame', background='lightblue')
+style1.configure('Custom1.TFrame', background='#f0dbce')
 
 style2 = ttk.Style()
-style2.configure('Custom2.TFrame', background='lightgreen')
+style2.configure('Custom2.TFrame', background='#ced8f0')
 
 style3 = ttk.Style()
-style3.configure('Custom3.TFrame', background='yellow')
+style3.configure('Custom3.TFrame', background='#f0e8ce')
 
 style4 = ttk.Style()
-style4.configure('Custom4.TFrame', background='pink')
+style4.configure('Custom4.TFrame', background='#f0cece')
 
 style5 = ttk.Style()
-style5.configure('Custom5.TFrame', background='#F68616')
+style5.configure('Custom5.TFrame', background='#d0f0ce')
 
 # Asigna el estilo personalizado apropiado a cada pestaña
 pestana1.configure(style='Custom1.TFrame')
@@ -83,43 +83,43 @@ pestana3.configure(style='Custom3.TFrame')
 pestana4.configure(style='Custom4.TFrame')
 pestana5.configure(style='Custom5.TFrame')
 
-titulo = Label(pestana1,text="Registro de Tareas", fg="Black", font=("Arial Black",18), bg='lightblue').pack()
+titulo = Label(pestana1,text="Registro de Tareas", fg="Black", font="Lucida 18 bold", bg='#f0dbce').pack(pady=10)
 
 varNomb = tk.StringVar()
-lblNomb = Label(pestana1, text="Nombre: ", font=("Times",12),bg='lightblue').pack(pady=8)
+lblNomb = Label(pestana1, text="Nombre: ", font=("Lucida",12),bg='#f0dbce').pack(pady=8)
 txtNomb = Entry(pestana1,textvariable=varNomb).pack()
 
 varDesc = tk.StringVar()
-lblDesc = Label(pestana1, text="Descripcion: ", font=("Times",12),bg='lightblue').pack(pady=10)
+lblDesc = Label(pestana1, text="Descripción: ", font=("Lucida",12),bg='#f0dbce').pack(pady=10)
 txtDesc = Entry(pestana1,textvariable=varDesc).pack()
 
 varIni = tk.StringVar()
-lblIni = Label(pestana1, text="Fecha Inicio: ", font=("Times",12),bg='lightblue').pack(pady=10)
+lblIni = Label(pestana1, text="Fecha Inicio: ", font=("Lucida",12),bg='#f0dbce').pack(pady=10)
 txtIni = Entry(pestana1,textvariable=varIni).pack()
 
 varFin = tk.StringVar()
-lblFin = Label(pestana1, text="Fecha Fin: ", font=("Times",12),bg='lightblue').pack(pady=10)
+lblFin = Label(pestana1, text="Fecha Fin: ", font=("Lucida",12),bg='#f0dbce').pack(pady=10)
 txtFin = Entry(pestana1,textvariable=varFin).pack()
 
-btnGuardar = Button(pestana1, text="Guardar Tarea ", bg="#003E68", fg="white", font=("Arial Black",10), command=ejecutaInsert).pack(pady=18)
+btnGuardar = Button(pestana1, text="Guardar Tarea ", bg="#d69872", fg="white", font=("Arial Black",10), command=ejecutaInsert).pack(pady=18)
 
 
 #Buscar una tarea
 
-titulo = Label(pestana2,text="Buscar Tarea", fg="Black", font=("Arial Black",18),bg='lightgreen').pack()
+titulo = Label(pestana2,text="Buscar Tarea", fg="Black", font="Lucida 18 bold",bg='#ced8f0').pack(pady=10)
 
 BusT = tk.StringVar()
-lblid= Label(pestana2, text="Numero de tarea: ", bg='lightgreen',font=("Times",16)).pack(pady=8)
+lblid= Label(pestana2, text="Numero de tarea: ", bg='#ced8f0',font=("Lucida",16)).pack(pady=8)
 txtid = Entry(pestana2,textvariable=BusT).pack()
-btnBusqueda = Button(pestana2,text="Buscar", font=("Arial Black",10), bg="#FFDE71" ,command=ejecutaSelectU).pack(pady=10)
+btnBusqueda = Button(pestana2,text="Buscar", font=("Arial Black",10), bg="#8c9cc2", fg="white" ,command=ejecutaSelectU).pack(pady=10)
 
-subBus = Label(pestana2,text="Tarea:",fg="Black",font=("Times",16),bg='lightgreen').pack(pady= 10)
+subBus = Label(pestana2,text="Tarea:",fg="Black",font=("Lucida",16),bg='#ced8f0').pack(pady= 10)
 textBus = tk.Text(pestana2,height=7,width=52)
 textBus.pack()
 
 #Consulta de todas las tareas
 
-Titulo = Label(pestana3,text="Tareas:",fg="Black",font=("Arial Black",15), bg="yellow").pack(pady=8)
+Titulo = Label(pestana3,text="Tareas:",fg="Black",font="Lucida 18 bold", bg="#f0e8ce").pack(pady=8)
 tree = ttk.Treeview(pestana3)
 tree['columns']=('NomTarea', 'DescTarea', 'FInicio', 'FFin')
 tree.column('#0', width=30, minwidth=30)
@@ -133,57 +133,57 @@ tree.heading('DescTarea', text='Descripción')
 tree.heading('FInicio', text='Fecha Inicio')
 tree.heading('FFin', text='Fecha Fin')
 tree.pack(padx=10, pady=10, fill=BOTH, expand=True)
-btnBusquedas = Button(pestana3, font=("Arial Black", 10),text="Consultar",command=tareas).pack(pady=10)
+btnBusquedas = Button(pestana3, font="Lucida 10 bold",text="Consultar",command=tareas).pack(pady=8)
 
 #Eliminar tarea
 
-titulo = Label(pestana4,text="Eliminar Tarea", fg="Black", font=("Arial Black",18), bg="pink").pack(pady=10)
+titulo = Label(pestana4,text="Eliminar Tarea", fg="Black", font="Lucida 18 bold", bg="#f0cece").pack(pady=10)
 
 BusT3 = tk.StringVar()
 
-lblid= Label(pestana4, text="Numero de tarea: ", bg="pink", font=("Times",16)).pack(pady=10)
+lblid= Label(pestana4, text="Número de tarea: ", bg="#f0cece", font="Lucida 16").pack(pady=10)
 
 txtid = Entry(pestana4,textvariable=BusT3).pack(pady=10)
 
-btnBusqueda = Button(pestana4,text="Eliminar", bg="red", font=("Arial Black", 10), fg="white",command=ejecutaDelete).pack(pady=10)
+btnBusqueda = Button(pestana4,text="Eliminar", bg="#d64d4d", font="Lucida 10 bold", fg="white",command=ejecutaDelete).pack(pady=10)
 
 
 #Actualizar datos de la tarea con id
 
-titulo = Label(pestana5,text="Actualizar Tarea", fg="Black", font=("Arial Black",18), bg="#F68616").pack(pady=3)
+titulo = Label(pestana5,text="Actualizar Tarea", fg="Black", font="Lucida 18 bold", bg="#d0f0ce").pack(pady=3)
 
 BusT4 = tk.StringVar()
 
-lblid= Label(pestana5, text="Numero de tarea: ", bg="#F68616", font=("Times", 12)).pack(pady=3)
+lblid= Label(pestana5, text="Numero de tarea: ", bg="#d0f0ce", font="Lucida 12").pack(pady=3)
 
 txtid = Entry(pestana5,textvariable=BusT4).pack(pady=3)
 
 varNomb2 = tk.StringVar()
 
-lblNomb = Label(pestana5, text="Nombre: ", bg="#F68616", font=("Times", 12)).pack(pady=3)
+lblNomb = Label(pestana5, text="Nombre: ", bg="#d0f0ce", font="Lucida 12").pack(pady=3)
 
 txtNomb = Entry(pestana5,textvariable=varNomb2).pack(pady=3)
 
 varDesc2 = tk.StringVar()
 
-lblDesc = Label(pestana5, text="Descripcion: ", bg="#F68616", font=("Times", 12)).pack(pady=3)
+lblDesc = Label(pestana5, text="Descripcion: ", bg="#d0f0ce", font="Lucida 12").pack(pady=3)
 
 txtDesc = Entry(pestana5,textvariable=varDesc2).pack(pady=3)
 
 varIni2 = tk.StringVar()
 
-lblIni = Label(pestana5, text="Fecha Inicio: ", bg="#F68616", font=("Times", 12)).pack(pady=3)
+lblIni = Label(pestana5, text="Fecha Inicio: ", bg="#d0f0ce", font="Lucida 12").pack(pady=3)
 
 txtIni = Entry(pestana5,textvariable=varIni2).pack(pady=3)
 
 varFin2 = tk.StringVar()
 
-lblFin = Label(pestana5, text="Fecha Final: ", bg="#F68616", font=("Times", 12)).pack(pady=3)
+lblFin = Label(pestana5, text="Fecha Final: ", bg="#d0f0ce", font="Lucida 12").pack(pady=3)
 
 txtFin = Entry(pestana5,textvariable=varFin2).pack(pady=3)
 
 
-btnBusqueda = Button(pestana5,text="Actualizar", font=("Arial Black", 10),command=ejecutaUpdate).pack(pady=5)
+btnBusqueda = Button(pestana5,text="Actualizar", font="Lucida 10 bold", bg="#95cf91", command=ejecutaUpdate).pack(pady=10)
 
 
 
