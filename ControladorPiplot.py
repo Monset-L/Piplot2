@@ -8,11 +8,7 @@ class controladorPBD:
     #Preparamos la conexion a la base de datos para usarla cuando se ocupe
     def conexionBD(self):
         try:
-
-            conexion = sqlite3.connect("piplo2.db")
-
-            conexion = sqlite3.connect("C:/Users/iSkye/Documents/GitHub/Proyecto Integrador/piplo2.db")
-
+            conexion = sqlite3.connect("C:/Users/lenovo/Desktop/piplo2.db")
             print("Conexion exitosa")
             return conexion
         
@@ -27,7 +23,7 @@ class controladorPBD:
         #2.- Revisar parametros vacios
         
         if(nom == "" or desc == "" or ini == "" or fin == ""):
-            messagebox.showwarning("Aguas", "Revisa tu formulario")
+            messagebox.showwarning("Error", "Revisa tu formulario")
             conx.close()
         else:
             #3.- Preparar datos y el querySQL
@@ -57,12 +53,11 @@ class controladorPBD:
                 #4.- Preparar lo necesario para el select
                 cursor=conx.cursor()
                 sqlSelect = "select * from Tareas where Id="+num
-
+                
                 #5.- Ejecucion y guardado de la consulta
                 
                 cursor.execute(sqlSelect)
                 RSusuario = cursor.fetchall()
-
                 conx.close()
                 
                 return RSusuario
@@ -94,41 +89,29 @@ class controladorPBD:
         
         conx = self.conexionBD()
         
-        
-        
-        try:
+        if (id == ""):
+            messagebox.showwarning("Error","Campo vacío")
+            conx.close()
+        else:
             
-        
-            if (id == ""):
-                messagebox.showwarning("CUIDADO","Revisa tus datos")
-                conx.close()
-            else:
-            
+            try:
+                cursor = conx.cursor()
+                sqlDelete="delete from Tareas where id = "+id
                 respuesta = messagebox.askquestion("Eliminar","¿Deseas eliminar el registro?")
             
-                if(respuesta == "yes"):
-                
-               
-                    cursor = conx.cursor()
-                    sqlDelete="delete from Tareas where id = "+id
+                if respuesta == True:
+            
                     cursor.execute(sqlDelete)
                     conx.commit()
-              
+                    conx.close()
                     messagebox.showinfo("EXITO","Se elimino la tarea exitosamente")
-        
-        
-                    conx.close()
-             
-                
                 else:
-                
                 # Messagebox no se elimino el registro
-                
-                    messagebox.showinfo("INFO","No se elimino la tarea")
+                    messagebox.showerror("Error","No se elimino la tarea")
                     conx.close()
-        except sqlite3.OperationalError:
+            except sqlite3.OperationalError:
             
-            print("Fallo en la consulta")    
+                print("Fallo en la consulta")    
             
             
         #Metodo Actualizar usuario
@@ -138,7 +121,7 @@ class controladorPBD:
         conx = self.conexionBD()
         
         if(id == "" or nom == "" or desc == "" or ini == "" or fin == ""):
-            messagebox.showwarning("Aguas", "Revisa tu formulario")
+            messagebox.showwarning("Error", "Campos vacíos")
             conx.close()
         else:
             #Preparar datos y el querySQL
